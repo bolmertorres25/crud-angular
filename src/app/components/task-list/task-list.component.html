@@ -1,0 +1,44 @@
+@if (taskList && taskList.length>0) {
+<div class="mat-elevation-z8">
+  <div class="flex justify-end p-8">
+    <button routerLink="/create-task" mat-raised-button color="primary">
+      Add Task
+    </button>
+  </div>
+  <table mat-table [dataSource]="taskList" >
+    <!-- Name Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dateCreation">
+      <th mat-header-cell *matHeaderCellDef> Date Creation </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateCreation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element"> 
+      <button mat-raised-button color="primary" (click)="edit(element.id)">Edit</button>
+      <button mat-raised-button color="primary" (click)="delete(element.id)">Delete</button>
+    </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+  
+}
